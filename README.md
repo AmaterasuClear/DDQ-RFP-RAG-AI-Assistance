@@ -2,7 +2,13 @@
 
 A **local-first, source-grounded** Retrieval-Augmented Generation system for institutional due diligence document analysis. Built for accuracy, verifiability, and offline operation.
 
-**Live demo presentation:** [`GroupF_DDQ-RAG_Presentation.pptx`](GroupF_DDQ-RAG_Presentation.pptx)
+**Presentation:** [`GroupF_DDQ-RAG_Presentation.pptx`](GroupF_DDQ-RAG_Presentation.pptx)
+
+**Important Instructions:**
+
+Please run `DDQ-AI-Assistant.py` in the `desktop` folder to launch the application interface.
+
+The desktop application is not included in this repository due to size limitations.
 
 ---
 
