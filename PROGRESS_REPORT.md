@@ -2,6 +2,8 @@
 
 **Due Diligence Retrieval-Augmented Generation Assistant**
 
+**AI Agent Utilized: Claude Code**
+
 ---
 
 ## a. Technical Architecture & Tools
@@ -196,22 +198,27 @@ For institutional due diligence, the desktop app (PySide6) was preferred over th
 
 ### 1. Hybrid Search Enhancement
 **Current:** BGE-M3 dense vectors only.
+
 **Opportunity:** Add BM25 sparse retrieval alongside dense vectors for hybrid search, improving recall for exact-match queries (policy numbers, clause references).
 
 ### 2. Multi-Document Cross-Referencing
 **Current:** Answers are generated per-document or per-folder.
+
 **Opportunity:** Implement cross-document synthesis — when no single document fully answers a question, the system could identify complementary sources and synthesize a composite answer with provenance from each.
 
 ### 3. Incremental Ingestion & Change Tracking
 **Current:** Full re-ingestion on document update.
+
 **Opportunity:** Implement delta ingestion — detect which chunks changed in a revised document and only re-embed those, preserving existing embeddings for unchanged content.
 
 ### 4. Interactive Review Dashboard
 **Current:** CLI-based review queue with status flags.
+
 **Opportunity:** A dedicated review UI within the desktop app showing: pending items, answer drafts, source document preview, and one-click approve/reject/edit workflow.
 
 ### 5. Export & Audit Trails
 **Current:** Basic audit logging to SQLite.
+
 **Opportunity:** Generate formal audit reports (PDF) for each question-answer session, including: the exact chunks retrieved, similarity scores, LLM prompt, raw and post-processed output, confidence calculation, and review disposition.
 
 ### 6. Model Fine-Tuning for Domain Language
@@ -219,6 +226,11 @@ For institutional due diligence, the desktop app (PySide6) was preferred over th
 
 ### 7. Continuous Benchmarking
 **Opportunity:** Build an evaluation harness with a curated set of due diligence questions and golden answers. Track retrieval precision, answer accuracy, and confidence calibration across every pipeline change.
+
+### 8. Human-in-the-Loop Knowledge Reinforcement
+**Current:** When a Compliance Officer rejects or edits an AI-generated answer during review, the correction is recorded as a status flag only — the improved answer is not fed back into the knowledge base.
+
+**Opportunity:** Implement a closed-loop learning mechanism within the review workflow. When a reviewer submits a final approved answer that differs from the AI draft, the system automatically indexes the question-answer pair as a high-authority knowledge chunk, tagged with reviewer identity, approval timestamp, and source question context. Subsequent similar queries will preferentially retrieve these human-validated answers over raw policy document chunks, progressively improving response accuracy for recurring due diligence topics without requiring model retraining. Over time, this transforms the review workflow from a quality gate into an active knowledge accumulation engine.
 
 ---
 
